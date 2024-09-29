@@ -1,3 +1,4 @@
+
 const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
@@ -15,14 +16,15 @@ dotenv.config();
 
 app.use(express.json({ limit: '10mb' }))
 app.use(cors())
-
+// Database connection
 mongoose
-    .connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(console.log("Connected to MongoDB"))
-    .catch((err) => console.log("NOT CONNECTED TO NETWORK", err))
+  .connect(process.env.MONGOOSEDB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("DB connected successfully"))
+  .catch((err) => console.error("Failed to connect to MongoDB:", err));
+
 
 app.use('/', Routes);
 

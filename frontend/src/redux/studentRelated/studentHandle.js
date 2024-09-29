@@ -21,12 +21,13 @@ export const getAllStudents = (id) => async (dispatch) => {
         dispatch(getError(error));
     }
 }
+const BASE_URL = 'http://localhost:5000';
 
 export const updateStudentFields = (id, fields, address) => async (dispatch) => {
     dispatch(getRequest());
 
     try {
-        const result = await axios.put(`${process.env.REACT_APP_BASE_URL}/${address}/${id}`, fields, {
+        const result = await axios.put(`${BASE_URL}/${address}/${id}`, fields, {
             headers: { 'Content-Type': 'application/json' },
         });
         if (result.data.message) {
